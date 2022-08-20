@@ -5,7 +5,7 @@ from shutil import copyfile
 
 
 event = 2015
-day = 1
+day = 2
 
 
 if __name__ == '__main__':

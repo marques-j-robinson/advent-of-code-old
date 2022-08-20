@@ -16,7 +16,6 @@ def parse(instructions):
 
 
 if __name__ == '__main__':
-    pass
     # Test Data
     x = fetch(2015, 1)
     [p1, p2]=parse(x)
