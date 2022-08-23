@@ -1,15 +1,14 @@
-import pyperclip
-from util.puzzle_input import fetch
+from util.base_solution import BaseSolution
+
+
+# class Solution(BaseSolution):
+
+    # def __init__(self):
+        # self.year = EVENT
+        # self.day = DAY
 
 
 if __name__ == '__main__':
     pass
-    # Test Data
-    # x = fetch(EVENT, DAY)
-
-    # p1 = 0
-
-    # pyperclip.copy(p1)
-
-    # print(f'part 1:\n{p1}')
-    # print(f'part 2:\n0')
+    # s = Solution()
+    # s.solve()

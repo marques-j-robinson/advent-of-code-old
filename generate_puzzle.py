@@ -2,14 +2,15 @@ import re
 import sys
 import fileinput
 from shutil import copyfile
+from puzzles.util.util import leading_zero
 
 
 event = 2015
-day = 3
+day = 4
 
 
 if __name__ == '__main__':
-    filename = f'puzzles/{event}_{str(day).zfill(2)}.py'
+    filename = f'puzzles/{event}_{leading_zero(day)}.py'
     copyfile('solution_template.py', filename)
     with open(filename, 'r+') as f:
         text = f.read()

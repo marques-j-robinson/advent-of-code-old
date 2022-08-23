@@ -1,5 +1,4 @@
-import pyperclip
-from util.puzzle_input import fetch
+from util.base_solution import BaseSolution
 
 
 class Box:

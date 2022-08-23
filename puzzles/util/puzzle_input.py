@@ -1,17 +1,16 @@
 import os
 import urllib3
 from dotenv import load_dotenv
+load_dotenv()
 
 
-def setup_cookies():
-    load_dotenv()
-    github_token = os.environ.get('GITHUB_SESSION', 'xxx')
-    return {'Cookie':f'session={github_token}'}
+BASE_URL = 'https://adventofcode.com'
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 
 def fetch(year, day):
+    url = f'{BASE_URL}/{year}/day/{day}/input'
+    cookies = {'Cookie':f'session={GITHUB_TOKEN}'}
     http = urllib3.PoolManager()
-    url = f'https://adventofcode.com/{year}/day/{day}/input'
-    cookies = setup_cookies()
     r = http.request('GET', url, headers=cookies)
     return r.data.decode('utf-8').rstrip('\n')
