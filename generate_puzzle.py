@@ -5,8 +5,8 @@ from shutil import copyfile
 from puzzles.util.util import leading_zero
 
 
-event = 2017
-day = 2
+event = 2019
+day = 1
 puzzlename = f'{event}_{leading_zero(day)}'
 
 
