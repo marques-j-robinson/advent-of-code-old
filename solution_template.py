@@ -7,6 +7,12 @@ from util.base_solution import BaseSolution
         # self.year = EVENT
         # self.day = DAY
 
+    # def part_01(self):
+        # pass
+
+    # def part_02(self):
+        # pass
+
 
 if __name__ == '__main__':
     pass

@@ -34,22 +34,23 @@ class Box:
         return l*w*h
 
 
-def parse(dimensions):
-    wrapping_paper = 0
-    ribbon = 0
+class Solution(BaseSolution):
 
-    for d in dimensions.split('\n'):
-        box = Box(d)
-        wrapping_paper += box.surface_area() + box.area()
-        ribbon += box.perimeter() + box.volume()
+    def __init__(self):
+        self.year = 2015
+        self.day = 2
 
-    return [wrapping_paper, ribbon]
+    def part_01(self):
+        for d in self.data.split('\n'):
+            box = Box(d)
+            self.p1 += box.surface_area() + box.area()
+
+    def part_02(self):
+        for d in self.data.split('\n'):
+            box = Box(d)
+            self.p2 += box.perimeter() + box.volume()
 
 
 if __name__ == '__main__':
-    # Test Data
-    x = fetch(2015, 2)
-    [p1, p2] = parse(x)
-    pyperclip.copy(p2)
-    print(f'part 1:\n{p1}')
-    print(f'part 2:\n{p2}')
+    s = Solution()
+    s.solve()

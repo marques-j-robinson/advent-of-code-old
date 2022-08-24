@@ -7,10 +7,11 @@ from puzzles.util.util import leading_zero
 
 event = 2015
 day = 4
+puzzlename = f'{event}_{leading_zero(day)}'
 
 
 if __name__ == '__main__':
-    filename = f'puzzles/{event}_{leading_zero(day)}.py'
+    filename = f'puzzles/{puzzlename}.py'
     copyfile('solution_template.py', filename)
     with open(filename, 'r+') as f:
         text = f.read()
@@ -19,3 +20,4 @@ if __name__ == '__main__':
         f.seek(0)
         f.write(text)
         f.truncate()
+    print(f'Completed generating {puzzlename}')

@@ -1,5 +1,4 @@
-import pyperclip
-from util.puzzle_input import fetch
+from util.base_solution import BaseSolution
 
 
 up = '^'
@@ -44,28 +43,29 @@ class Grid:
         self.append_coord()
 
 
+class Solution(BaseSolution):
+
+    def __init__(self):
+        self.year = 2015
+        self.day = 3
+
+    def part_01(self):
+        santa = Grid()
+        for d in self.data:
+            santa.move(d)
+        self.p1 = len(santa.seen)
+
+    def part_02(self):
+        santa = Grid()
+        robo_santa = Grid()
+        for idx, d in enumerate(self.data):
+            if is_even(idx):
+                santa.move(d)
+            else:
+                robo_santa.move(d)
+        self.p2 = combine(santa.seen, robo_santa.seen)
+
+
 if __name__ == '__main__':
-    santa = Grid()
-    og_santa = Grid()
-    robo_santa = Grid()
-
-    # Test Data
-    # directions = '>'
-    # directions = '^>v<'
-    # directions = '^v^v^v^v^v'
-    directions = fetch(2015, 3)
-
-    for idx, d in enumerate(directions):
-        santa.move(d)
-        if is_even(idx):
-            og_santa.move(d)
-        else:
-            robo_santa.move(d)
-
-    p1 = len(santa.seen)
-    # pyperclip.copy(p1)
-    print(f'part 1:\n{p1}')
-
-    p2 = combine(og_santa.seen, robo_santa.seen)
-    pyperclip.copy(p2)
-    print(f'part 2:\n{p2}')
+    s = Solution()
+    s.solve()

@@ -1,6 +1,13 @@
 from util.base_solution import BaseSolution
 
 
+def process_instruction(i):
+    if i == '(':
+        return 1
+    else:
+        return -1
+
+
 class Solution(BaseSolution):
 
     def __init__(self):
@@ -17,13 +24,6 @@ class Solution(BaseSolution):
             if x == -1 and self.p2 == 0:
                 self.p2 = idx
             x += process_instruction(i)
-
-
-def process_instruction(i):
-    if i == '(':
-        return 1
-    else:
-        return -1
 
 
 if __name__ == '__main__':
