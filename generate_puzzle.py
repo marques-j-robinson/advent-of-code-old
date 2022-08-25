@@ -6,7 +6,7 @@ from puzzles.util.util import leading_zero
 
 
 event = 2020
-day = 8
+day = 9
 puzzlename = f'{event}_{leading_zero(day)}'
 
 
