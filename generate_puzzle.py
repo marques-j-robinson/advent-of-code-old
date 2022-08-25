@@ -5,7 +5,7 @@ from shutil import copyfile
 from puzzles.util.util import leading_zero
 
 
-event = 2019
+event = 2020
 day = 1
 puzzlename = f'{event}_{leading_zero(day)}'
 
@@ -20,4 +20,4 @@ if __name__ == '__main__':
         f.seek(0)
         f.write(text)
         f.truncate()
-    print(f'Completed generating {puzzlename}')
+    print(f'Generated puzzle {puzzlename}')
