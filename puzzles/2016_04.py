@@ -1,3 +1,4 @@
+import string
 import operator
 from util.base_solution import BaseSolution
 
@@ -7,12 +8,14 @@ class Solution(BaseSolution):
     def __init__(self):
         self.year = 2016
         self.day = 4
+        self.real_rooms = []
 
     def translate(self):
         self.split_by_new_line()
 
     def parse_line(self, words):
         [selector_id, check_sum] = words.pop().split('[')
+        selector_id = int(selector_id)
         check_sum = check_sum[:-1]
         return [words, selector_id, check_sum]
 
@@ -41,10 +44,26 @@ class Solution(BaseSolution):
             letters = self.track_letters(words)
             test_check_sum = self.prepare_check_sum(letters)
             if test_check_sum == check_sum:
-                self.p1 += int(selector_id)
+                self.p1 += selector_id
+                self.real_rooms.append([words, selector_id])
+
+    def cesar(self, text, s):
+        res = ""
+        for i in range(len(text)):
+            char = text[i]
+            res += chr((ord(char) + s - 97) % 26 + 97)
+        return res
 
     def part_02(self):
-        pass
+        for line in self.real_rooms:
+            [words, shift_value] = line
+            real_name = ''
+            for w in words:
+                real_name += self.cesar(w, shift_value)
+                real_name += ' '
+            real_name.strip()
+            if 'north' in real_name or 'pole' in real_name:
+                self.p2 = shift_value
 
 
 if __name__ == '__main__':
