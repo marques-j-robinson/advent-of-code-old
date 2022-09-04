@@ -3,10 +3,12 @@ import sys
 import fileinput
 from shutil import copyfile
 from puzzles.util.util import leading_zero
+from dotenv import load_dotenv
+load_dotenv()
 
 
-event = 2016
-day = 3
+event = os.getenv('EVENT')
+day = os.getenv('DAY')
 puzzlename = f'{event}_{leading_zero(day)}'
 
 
