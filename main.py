@@ -44,7 +44,6 @@ def read_puzzle_input():
 def solve():
     print(f'Solution for {EVENT}_{leading_zero(DAY)}')
     puzzle_input = read_puzzle_input()
-    # print(puzzle_input)
     s_module = importlib.import_module(f'Events.{EVENT}.day{leading_zero(DAY)}')
     s = s_module.Solution(puzzle_input)
     s.translate()
