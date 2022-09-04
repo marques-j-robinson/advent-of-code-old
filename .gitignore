@@ -1,3 +1,6 @@
+# Custom puzzle input data
+cache/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
