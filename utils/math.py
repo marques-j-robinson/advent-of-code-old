@@ -1,4 +1,4 @@
-from .data_translations import int_list
+from .data_formats import int_list
 
 
 def surface_area(a):
@@ -24,10 +24,6 @@ def volume(a):
 
 def manhattan_distance(a, b):
     return abs(a) + abs(b)
-
-
-def combine(a, b):
-    return len(a + list(set(b) - set(a)))
 
 
 def is_even(i):

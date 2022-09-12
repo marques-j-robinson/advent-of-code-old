@@ -1,5 +1,5 @@
-from .data_translations import int_list
-from .calc import surface_area, area, perimeter, volume
+from .data_formats import int_list, parse_coord
+from .math import surface_area, area, perimeter, volume
 
 
 class Cube:
@@ -27,30 +27,27 @@ class Cube:
 
 class Grid:
 
-    def __init__(self, directions):
-        self.x = 0
-        self.y = 0
-        self.seen = []
+    def __init__(self, directions, origin='0,0'):
         self.directions = directions
+        self.coord = origin
+        self.seen = [origin]
 
     def move(self, d):
+        [x, y] = parse_coord(self.coord)
         if d == self.directions["up"]:
-            self.y += 1
+            y += 1
         elif d == self.directions["right"]:
-            self.x += 1
+            x += 1
         elif d == self.directions["down"]:
-            self.y -= 1
+            y -= 1
         elif d == self.directions["left"]:
-            self.x -= 1
+            x -= 1
+        self.coord = f"{x},{y}"
 
-    def get_coord(self):
-        return f"{self.x},{self.y}"
+    def move_auto(self, d):
+        self.move(d)
+        self.add_seen()
 
     def add_seen(self):
-        coord = self.get_coord()
-        if coord not in self.seen:
-            self.seen.append(coord)
-
-    def has_seen(self):
-        coord = self.get_coord()
-        return coord in self.seen
+        if self.coord not in self.seen:
+            self.seen.append(self.coord)

@@ -1,5 +1,5 @@
 import re
-from utils.data_translations import DataTranslations
+from utils.solution import BaseSolution
 
 
 def parse_instruction(line):
@@ -63,15 +63,9 @@ class Grid:
         return [y for x in self.elements[start[0]:end[0]+1] for y in x[start[1]:end[1]+1]]
 
 
-class Solution(DataTranslations):
+class Solution(BaseSolution):
 
-    def __init__(self, puzzle_input):
-        self.p1 = 0
-        self.p2 = 0
-        self.data = puzzle_input
-
-
-    def translate(self):
+    def format_data(self):
         self.split_by_new_line()
         self.data = [l.strip() for l in self.data]
 

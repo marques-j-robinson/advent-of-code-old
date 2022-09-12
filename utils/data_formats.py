@@ -2,9 +2,17 @@ def int_list(a):
     return [int(i) for i in a]
 
 
-class DataTranslations:
+def combine(a, b):
+    return len(a + list(set(b) - set(a)))
 
-    def translate(self):
+
+def parse_coord(coord):
+    return [int(i) for i in coord.split(',')]
+
+
+class DataFormats:
+
+    def format_data(self):
         pass
 
     def split_by_empty_line(self):

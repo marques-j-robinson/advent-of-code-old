@@ -1,4 +1,4 @@
-from utils.data_translations import DataTranslations
+from utils.solution import BaseSolution
 
 
 def step(i):
@@ -8,12 +8,11 @@ def step(i):
         return -1
 
 
-class Solution(DataTranslations):
+def is_basement(floor_id):
+    return floor_id == -1
 
-    def __init__(self, puzzle_input):
-        self.p1 = 0
-        self.p2 = 0
-        self.data = puzzle_input
+
+class Solution(BaseSolution):
 
     def part1(self):
         for i in self.data:
@@ -22,6 +21,6 @@ class Solution(DataTranslations):
     def part2(self):
         cur_floor = 0
         for idx, i in enumerate(self.data):
-            if cur_floor == -1 and self.p2 == 0:
+            if is_basement(cur_floor) and self.is_part2_empty():
                 self.p2 = idx
             cur_floor += step(i)

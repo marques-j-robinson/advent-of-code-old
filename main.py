@@ -4,7 +4,6 @@ import importlib
 from shutil import copyfile
 
 import urllib3
-import pyperclip
 from dotenv import load_dotenv
 
 
@@ -23,33 +22,12 @@ def leading_zero(n):
     return str(n).zfill(2)
 
 
-def copy_solution(p1, p2):
-    if p2 == 0:
-        print(f'Part 1: {p1}')
-        pyperclip.copy(str(p1))
-    else:
-        print(f'Part 1: {p1}')
-        print(f'Part 2: {p2}')
-        pyperclip.copy(str(p2))
-
-
 def read_puzzle_input():
     cache_path = f'cache/{EVENT}_{leading_zero(DAY)}'
     puzzle_input_file = open(cache_path, 'r')
     puzzle_input = puzzle_input_file.read()
     puzzle_input_file.close()
     return puzzle_input
-
-
-def solve():
-    print(f'Solution for {EVENT}_{leading_zero(DAY)}')
-    puzzle_input = read_puzzle_input()
-    s_module = importlib.import_module(f'Events.{EVENT}.day{leading_zero(DAY)}')
-    s = s_module.Solution(puzzle_input)
-    s.translate()
-    s.part1()
-    s.part2()
-    copy_solution(s.p1, s.p2)
 
 
 def fetch():
@@ -72,7 +50,7 @@ def save_puzzle_input():
             print(f'Stored puzzle_input in cache at {cache_path}')
 
 
-def generate_new_puzzle():
+def copy_solution_template():
     filename = f'Events/{EVENT}/day{leading_zero(DAY)}.py'
     if os.path.exists(filename):
         print(f'{EVENT}_{leading_zero(DAY)} PUZZLE ALREADY GENERATED!')
@@ -84,9 +62,13 @@ def generate_new_puzzle():
 if __name__ == '__main__':
     cmd_args = sys.argv[1:]
     if '--generate' in cmd_args:
-        generate_new_puzzle()
+        copy_solution_template()
         save_puzzle_input()
     elif len(cmd_args) == 0:
-        solve()
+        print(f'Solution for {EVENT}_{leading_zero(DAY)}')
+        puzzle_input = read_puzzle_input()
+        s_module = importlib.import_module(f'Events.{EVENT}.day{leading_zero(DAY)}')
+        s = s_module.Solution(puzzle_input)
+        s.solve()
     else:
         print('UNKNOWN CMD\nEXITING...')

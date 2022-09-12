@@ -1,5 +1,5 @@
 import hashlib
-from utils.data_translations import DataTranslations
+from utils.solution import BaseSolution
 
 
 def extract(secret_key, count):
@@ -26,12 +26,7 @@ class Mine:
         return count
 
 
-class Solution(DataTranslations):
-
-    def __init__(self, puzzle_input):
-        self.p1 = 0
-        self.p2 = 0
-        self.data = puzzle_input
+class Solution(BaseSolution):
 
     def part1(self):
         mine = Mine(self.data)

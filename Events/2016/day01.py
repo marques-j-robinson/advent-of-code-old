@@ -53,6 +53,6 @@ class Solution(DataTranslations):
             while steps > 0:
                 steps -= 1
                 G.move(direction)
-                if self.p2 == 0 and G.has_seen():
+                if self.p2 == 0 and G.coord in G.seen:
                     self.p2 = manhattan_distance(G.x, G.y)
                 G.add_seen()

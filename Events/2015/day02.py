@@ -1,4 +1,4 @@
-from utils.data_translations import DataTranslations
+from utils.solution import BaseSolution
 from utils.shapes import Cube
 
 
@@ -12,14 +12,9 @@ def calc_ribbon(dimensions):
     return box.perimeter() + box.volume()
 
 
-class Solution(DataTranslations):
+class Solution(BaseSolution):
 
-    def __init__(self, puzzle_input):
-        self.p1 = 0
-        self.p2 = 0
-        self.data = puzzle_input
-
-    def translate(self):
+    def format_data(self):
         self.split_by_new_line()
 
     def part1(self):
