@@ -12,34 +12,6 @@ directions = {
 }
 
 
-# class Grid:
-
-    # def __init__(self):
-        # orgin = '0,0'
-        # self.coord = orgin
-        # self.seen = [orgin]
-
-    # def parse_coord(self):
-        # return [int(i) for i in self.coord.split(',')]
-
-    # def append_coord(self):
-        # if self.coord not in self.seen:
-            # self.seen.append(self.coord)
-
-    # def move(self, d):
-        # [x, y] = self.parse_coord()
-        # if d == up:
-            # y += 1
-        # elif d == right:
-            # x += 1
-        # elif d == down:
-            # y -= 1
-        # elif d == left:
-            # x -= 1
-        # self.coord = f'{x},{y}'
-        # self.append_coord()
-
-
 class Solution(BaseSolution):
 
     def part1(self):
