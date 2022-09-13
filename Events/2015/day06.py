@@ -2,6 +2,9 @@ import re
 from utils.solution import BaseSolution
 
 
+grid_size = 1000
+
+
 def parse_instruction(line):
     res = re.match(r"^(\D*) (\d*,\d*) \D* (\d*,\d*)", line)
     [start_x, start_y] = [int(i) for i in res.group(2).split(",")]
@@ -34,18 +37,21 @@ class Light:
         self.on = False
 
 
-class Grid:
+class Solution(BaseSolution):
 
-    def __init__(self, size):
-        self.elements = []
-        self.size = size
-        self.setup()
+    def format_data(self):
+        self.split_by_new_line()
+        self.data = [l.strip() for l in self.data]
 
-    def setup(self):
-        for idx, _ in enumerate(range(self.size)):
-            self.elements.append([])
-            for _ in range(self.size):
-                self.elements[idx].append(Light())
+    def setupGrid(self):
+        self.grid = []
+        for idx, _ in enumerate(range(grid_size)):
+            self.grid.append([])
+            for _ in range(grid_size):
+                self.grid[idx].append(Light())
+
+    def get_range(self, start, end):
+        return [y for x in self.grid[start[0]:end[0]+1] for y in x[start[1]:end[1]+1]]
 
     def process_command(self, CMD, start, end):
         for light in self.get_range(start, end):
@@ -59,31 +65,21 @@ class Grid:
                 light.turn_off()
                 light.britten(-1)
 
-    def get_range(self, start, end):
-        return [y for x in self.elements[start[0]:end[0]+1] for y in x[start[1]:end[1]+1]]
-
-
-class Solution(BaseSolution):
-
-    def format_data(self):
-        self.split_by_new_line()
-        self.data = [l.strip() for l in self.data]
-
     def part1(self):
-        G = Grid(1000)
+        self.setupGrid()
         for i in self.data:
             [CMD, start, end] = parse_instruction(i)
-            G.process_command(CMD, start, end)
-        for row in G.elements:
+            self.process_command(CMD, start, end)
+        for row in self.grid:
             for light in row:
                 if light.on is True:
                     self.p1 += 1
 
     def part2(self):
-        G = Grid(1000)
+        self.setupGrid()
         for i in self.data:
             [CMD, start, end] = parse_instruction(i)
-            G.process_command(CMD, start, end)
-        for row in G.elements:
+            self.process_command(CMD, start, end)
+        for row in self.grid:
             for light in row:
                 self.p2 += light.brightness
